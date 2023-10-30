@@ -1,6 +1,8 @@
 import streamlit as st
 import streamlit.components.v1 as components
 
+st.set_page_config(page_title="XmasMagicPic", page_icon="🎨", layout="centered", initial_sidebar_state="collapsed")
+
 stripe_js = """<script async
   src="https://js.stripe.com/v3/buy-button.js">
 </script>
@@ -12,8 +14,9 @@ stripe_js = """<script async
 </stripe-buy-button>
 """.format(st.secrets["stripe_publishable_key"])
 
-st.title('Create your own generative AI artwork')
+st.title("Xmas Magic Pic")
+st.subheader("Transform Your Photos into Holiday Magic")
 
 
+components.html(html=stripe_js, height=300)
 
-components.html(html=stripe_js,  height=600)
