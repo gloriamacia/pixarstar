@@ -1,7 +1,7 @@
 import streamlit as st
 import streamlit.components.v1 as components
 
-st.set_page_config(page_title="XmasMagicPic", page_icon="🎨", layout="centered", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="Pixar Star", page_icon="⭐", layout="centered", initial_sidebar_state="collapsed")
 
 stripe_js = """<script async
   src="https://js.stripe.com/v3/buy-button.js">
@@ -14,8 +14,8 @@ stripe_js = """<script async
 </stripe-buy-button>
 """.format(st.secrets["stripe_publishable_key"])
 
-st.title("Xmas Magic Pic")
-st.subheader("Transform Your Photos into Holiday Magic")
+st.title("Pixar Star ⭐")
+st.subheader("Transform Your Pet into a Pixar movie character")
 
 
 components.html(html=stripe_js, height=300)
