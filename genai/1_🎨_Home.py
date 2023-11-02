@@ -15,7 +15,7 @@ stripe_js = """<script async
 """.format(st.secrets["stripe_publishable_key"])
 
 st.title("Pixar Star ⭐")
-st.subheader("Transform Your Pet into a Pixar moviecharacter")
+st.subheader("Transform Your Pet into a Pixar movie character")
 
 
 components.html(html=stripe_js, height=300)
