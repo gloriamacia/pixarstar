@@ -20,21 +20,17 @@ st.set_page_config(page_title="Pixar Star", page_icon="⭐", layout="centered", 
 st.title("Pixar Star ⭐")
 st.subheader("Transform Your Pet into a Pixar movie character")
 
+animal = st.text_input('What animal is your pet?', 'Dog')
 image = st.file_uploader("Upload your image", type=['png', 'jpeg', 'jpg'])
+prompt=f"{animal} in Disney style, Pixar animation, character design, adorable cute {animal} in Pixar style, beautiful eyes, realistic original background, 8k resolution, Disney Pixar movie poster, 3D render, high resolution, 4k, hyperrealistic"
+# st.write(animal)
 
 if image is not None:
     # Open the image using Pillow
     img1 = Image.open(image)
-    # Get the width and height of the image
-    # width, height = img.size
-    # left = (width - 512) / 2
-    # top = (height - 512) / 2
-    # right = (width + 512) / 2
-    # bottom = (height + 512) / 2
-    # cropped_image = img.crop((left, top, right, bottom))
     img1 = img1.resize((256, 256))
     answers = stability_api.generate(
-    prompt="Disney style, Pixar animation, character design, adorable cute pet in Pixar style, 8k resolution, Disney Pixar movie poster, 3D render, high resolution, 4k, hyperrealistic",
+    prompt=prompt,
     init_image=img1, # Assign our previously generated img as our Initial Image for transformation.
     start_schedule=0.6, # Set the strength of our prompt in relation to our initial image.
     seed=12345, # If attempting to transform an image that was previously generated with our API,
