@@ -11,8 +11,7 @@ from streamlit_lottie import st_lottie_spinner
 import random
 
 st.set_page_config(page_title="Pixar Star", page_icon="⭐", layout="centered", initial_sidebar_state="collapsed")
-#add_page_title()
-show_pages_from_config()
+# add_page_title()
 hide_pages(["Home"])
 
 
@@ -30,7 +29,7 @@ image_urls = ["https://lottie.host/a9e4e6b2-7532-400b-86a9-fe178e6df18e/s5SYb3m7
 st.title("Pixar Star ⭐")
 st.subheader("Transform Your Pet into a Pixar movie character")
 
-animal = st.text_input('What animal is your pet?', 'Dog')
+animal = st.text_input('What animal is your pet?')
 image = st.file_uploader("Upload your image", type=['png', 'jpeg', 'jpg'])
 prompt=f"{animal} in Disney style, Pixar animation, character design, adorable cute {animal} in Pixar style, beautiful eyes, 8k resolution, Disney Pixar movie poster, 3D render, high resolution, 4k"
 
