@@ -6,8 +6,8 @@ st.set_page_config(page_title="Pixar Star", page_icon="⭐", layout="centered", 
 # show_pages_from_config()
 show_pages(
         [
-            Page("streamlit_app.py", "Home", "🏠"),
-            Page("stability_ai_app.py", "Draw", "🎨")
+            Page("genai/streamlit_app.py", "Home", "🏠"),
+            Page("genai/stability_ai_app.py", "Draw", "🎨")
         ]
     )
 hide_pages(["Draw"])
