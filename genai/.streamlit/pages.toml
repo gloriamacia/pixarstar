@@ -1,9 +1,0 @@
-[[pages]]
-path = "streamlit_app.py"
-name = "Home"
-icon = "🏠"
-
-[[pages]]
-path = "stability_ai_app.py"
-name = "Draw"
-icon = "🎨"

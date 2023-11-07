@@ -6,12 +6,12 @@ from PIL import Image
 from stability_sdk import client
 import stability_sdk.interfaces.gooseai.generation.generation_pb2 as generation
 from streamlit_image_comparison import image_comparison
-from st_pages import add_page_title, hide_pages, show_pages_from_config
+from st_pages import hide_pages
 from streamlit_lottie import st_lottie_spinner
 import random
 
 st.set_page_config(page_title="Pixar Star", page_icon="⭐", layout="centered", initial_sidebar_state="collapsed")
-# add_page_title()
+
 hide_pages(["Home"])
 
 
