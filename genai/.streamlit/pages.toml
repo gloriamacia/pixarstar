@@ -1,9 +1,9 @@
 [[pages]]
-path = "genai/streamlit_app.py"
+path = "streamlit_app.py"
 name = "Home"
 icon = "🎨"
 
 [[pages]]
-path = "genai/pages/stability_ai_app.py"
+path = "stability_ai_app.py"
 name = "Draw"
 icon = "🖼️"
