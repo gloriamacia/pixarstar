@@ -11,6 +11,8 @@ streamlit = "^1.28.0"
 requests = "^2.31.0"
 stability-sdk = "^0.8.4"
 streamlit-image-comparison = "^0.0.4"
+st-pages = "^0.4.5"
+streamlit-lottie = "^0.0.5"
 
 
 [build-system]

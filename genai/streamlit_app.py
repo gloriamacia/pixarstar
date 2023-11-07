@@ -1,7 +1,11 @@
 import streamlit as st
 import streamlit.components.v1 as components
+from st_pages import add_page_title, hide_pages, show_pages_from_config
 
 st.set_page_config(page_title="Pixar Star", page_icon="⭐", layout="centered", initial_sidebar_state="collapsed")
+add_page_title()
+show_pages_from_config()
+hide_pages(["Draw"])
 
 stripe_js = """<script async
   src="https://js.stripe.com/v3/buy-button.js">
