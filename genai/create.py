@@ -11,9 +11,14 @@ from streamlit_lottie import st_lottie_spinner
 import random
 
 st.set_page_config(page_title="Pixar Star", page_icon="⭐", layout="centered", initial_sidebar_state="collapsed")
+hide_pages(["Payment", "Sign Up", "Sign In"])
 
-hide_pages(["Home"])
-
+# Initialization state variables
+if 'token' not in st.session_state:
+    st.error('Please [sign in](http://localhost:8501) first')
+    #st.error('Please [sign in](http://localhost:8501/Sign%20in) first')
+else:
+    st.write(st.session_state['token'])
 
 # Set up our connection to the API.
 stability_api = client.StabilityInference(
