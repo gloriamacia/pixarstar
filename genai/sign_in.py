@@ -12,8 +12,8 @@ show_pages(
         [
             Page("sign_in.py", "Sign in", "🔓"),
             Page("sign_up.py", "Sign Up", "🙋🏽‍♀️"),
-            Page("streamlit_app.py", "Payment", "💰"),
-            Page("stability_ai_app.py", "Create", "🎨"),
+            Page("payment.py", "Payment", "💰"),
+            Page("create.py", "Create", "🎨"),
             
         ]
     )
