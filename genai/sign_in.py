@@ -19,20 +19,13 @@ show_pages(
     )
 hide_pages(["Payment", "Sign Up"])
 
-# Set your Cognito pool id, app client id, and region
-POOL_ID = "eu-west-1_WdFlA4Rm6"
-APP_CLIENT_ID = "7l2hl2qjicg992bl39gt7lfdk1"
-APP_CLIENT_SECRET = "3lbq6m9j87uqn68t7elj4urbo75m1gjp70qu2i2gcdoe3hpu888"
-REGION_NAME = "eu-west-1"
-
 # Initialize the Cognito client
-client = boto3.client('cognito-idp', region_name=REGION_NAME)
+client = boto3.client('cognito-idp', region_name=st.secrets.region_name)
 
 # Create a Streamlit sign-up form
 st.title("Sign In")
 email = st.text_input("Email").lower()
 password = st.text_input("Password", type="password")
-confirm_password = st.text_input("Confirm Password", type="password")
 submit_button = st.button("Sign In")
 st.markdown("""Not a member?
     <a href="http://localhost:8501/Sign%20Up" target = "_self"> 
@@ -41,34 +34,29 @@ st.markdown("""Not a member?
 """, unsafe_allow_html=True)
 
 # Calculate SECRET_HASH
-message = email + APP_CLIENT_ID
-key = APP_CLIENT_SECRET.encode('utf-8')
+message = email + st.secrets.APP_CLIENT_ID
+key = st.secrets.APP_CLIENT_SECRET.encode('utf-8')
 msg = message.encode('utf-8')
-SECRET_HASH = base64.b64encode(hmac.new(key, msg, digestmod=hashlib.sha256).digest()).decode()
+secret_hash = base64.b64encode(hmac.new(key, msg, digestmod=hashlib.sha256).digest()).decode()
 
 if submit_button:
-    if password != confirm_password:
-        st.error("Passwords do not match")
-    else:
-        try:
-            response = client.initiate_auth(
-                ClientId=APP_CLIENT_ID,
-                AuthFlow='USER_PASSWORD_AUTH',
-                AuthParameters={
-                    'USERNAME': email,
-                    'PASSWORD': password,
-                    'SECRET_HASH': SECRET_HASH
-                }
-            )
-            st.success("User authenticated successfully! Start creating in the left menu.")
-            #st.success("User authenticated successfully! Start [creating](http://localhost:8501/Draw)")
-            # Extract the access token and refresh token from the response
-            access_token = response['AuthenticationResult']['AccessToken']
-            refresh_token = response['AuthenticationResult']['RefreshToken']
-            st.session_state['token'] = access_token
-        #     # Do something with the access token and refresh token
-        except client.exceptions.NotAuthorizedException:
-            st.error("User not found in the database. Please [sign up](http://localhost:8501/Sign%20Up)")
-        except Exception as e:
-            st.error("An error occurred during authentication.")
-            st.error(str(e))
+    try:
+        response = client.initiate_auth(
+            ClientId=st.secrets.APP_CLIENT_ID,
+            AuthFlow='USER_PASSWORD_AUTH',
+            AuthParameters={
+                'USERNAME': email,
+                'PASSWORD': password,
+                'SECRET_HASH': secret_hash
+            }
+        )
+        st.success("User authenticated successfully! Start creating in the left menu.")
+        # Extract the access token and refresh token from the response
+        access_token = response['AuthenticationResult']['AccessToken']
+        refresh_token = response['AuthenticationResult']['RefreshToken']
+        st.session_state['token'] = access_token
+    except client.exceptions.NotAuthorizedException:
+        st.error("Incorrect user or password. Do you need to sign up?")
+    except Exception as e:
+        st.error("An error occurred during authentication.")
+        st.error(str(e))
