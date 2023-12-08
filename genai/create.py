@@ -15,7 +15,7 @@ hide_pages(["Payment", "Sign Up", "Sign In"])
 
 # Initialization state variables
 if 'token' not in st.session_state:
-    st.error('Please [sign in](http://localhost:8501) first')
+    st.error('Please [sign in](st.secrets.APP_URI) first')
 else:
     st.write(st.session_state['token'])
     # Set up our connection to the API.

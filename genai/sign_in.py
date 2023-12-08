@@ -27,8 +27,8 @@ st.title("Sign In")
 email = st.text_input("Email").lower()
 password = st.text_input("Password", type="password")
 submit_button = st.button("Sign In")
-st.markdown("""Not a member?
-    <a href="http://localhost:8501/Sign%20Up" target = "_self"> 
+st.markdown(f"""Not a member?
+    <a href="{st.secrets.APP_URI}/Sign%20Up" target = "_self"> 
         Sign Up
     </a>
 """, unsafe_allow_html=True)

@@ -3,6 +3,7 @@ import boto3
 import hashlib
 import hmac
 import base64
+from st_pages import hide_pages
 
 st.set_page_config(page_title="Pixar Star", page_icon="⭐", layout="centered", initial_sidebar_state="collapsed")
 hide_pages(["Payment", "Create"])
@@ -67,8 +68,8 @@ if confirm_button:
         # st.info(response)
         if response['ResponseMetadata']['HTTPStatusCode'] == 200:
             # st.success("User confirmed successfully! Sign in")
-            st.markdown("""User confirmed successfully!
-            <a href="http://localhost:8501" target = "_self"> 
+            st.markdown(f"""User confirmed successfully!
+            <a href="{st.secrets.APP_URI}" target = "_self"> 
             Sign in </a>""", unsafe_allow_html=True)
     except Exception as e:
         st.error("An error occurred during confirmation.")
