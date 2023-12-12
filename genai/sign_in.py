@@ -7,7 +7,7 @@ from st_pages import Page, show_pages, hide_pages
 
 
 st.set_page_config(page_title="Pixar Star", page_icon="⭐", layout="centered", initial_sidebar_state="collapsed")
-# show_pages_from_config()
+# for local testing the Page path should not have the folder prefix
 show_pages(
         [
             Page("genai/sign_in.py", "Sign in", "🔓"),
