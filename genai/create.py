@@ -7,11 +7,7 @@ from stability_sdk import client
 import stability_sdk.interfaces.gooseai.generation.generation_pb2 as generation
 from streamlit_image_comparison import image_comparison
 from st_pages import hide_pages
-from streamlit_lottie import st_lottie_spinner
-# import random
-import requests
 import os
-import base64
 
 st.set_page_config(page_title="Pixar Star", page_icon="⭐", layout="centered", initial_sidebar_state="collapsed")
 hide_pages(["Payment", "Sign Up", "Sign In"])
@@ -34,9 +30,6 @@ else:
         # Check out the following link for a list of available engines: https://platform.stability.ai/docs/features/api-parameters#engine
     )
 
-    image_urls = ["https://lottie.host/a9e4e6b2-7532-400b-86a9-fe178e6df18e/s5SYb3m7Xc.json",
-                "https://lottie.host/ec6e8ae5-317d-43e4-a584-3ddd3ea591b3/cvzqJb5HAc.json"]
-
     st.title("Pixar Star ⭐")
     st.subheader("Transform Your Pet into a Pixar movie character")
 
@@ -45,8 +38,6 @@ else:
     prompt=f"{animal} in Disney style, Pixar animation, character design, adorable cute {animal} in Pixar style, beautiful eyes, 8k resolution, Disney Pixar movie poster, 3D render, high resolution, 4k, sharp borders, no blur"
 
     if image:
-    # lottie = random.choice(image_urls)
-    # with st_lottie_spinner(lottie, key="download"):
     # Open the image using Pillow
         img1 = Image.open(image)
         img1 = img1.resize((512, 512))
