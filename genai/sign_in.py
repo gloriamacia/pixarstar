@@ -10,10 +10,10 @@ st.set_page_config(page_title="Pixar Star", page_icon="⭐", layout="centered", 
 # show_pages_from_config()
 show_pages(
         [
-            Page("sign_in.py", "Sign in", "🔓"),
-            Page("sign_up.py", "Sign Up", "🙋🏽‍♀️"),
-            Page("payment.py", "Payment", "💰"),
-            Page("create.py", "Create", "🎨"),
+            Page("genai/sign_in.py", "Sign in", "🔓"),
+            Page("genai/sign_up.py", "Sign Up", "🙋🏽‍♀️"),
+            Page("genai/payment.py", "Payment", "💰"),
+            Page("genai/create.py", "Create", "🎨"),
             
         ]
     )
