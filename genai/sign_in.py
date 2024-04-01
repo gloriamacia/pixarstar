@@ -3,20 +3,34 @@ import boto3
 import hashlib
 import hmac
 import base64
+import os
 from st_pages import Page, show_pages, hide_pages
 
+# This file is the entry point for the Streamlit app. It will show the sign-in page and handle the authentication process.
+# Run it locally doing streamlit run sign_in.py
 
-st.set_page_config(page_title="Pixar Star", page_icon="⭐", layout="centered", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="Pixar Star", page_icon="🎬", layout="centered", initial_sidebar_state="collapsed")
 # for local testing the Page path should not have the folder prefix
-show_pages(
-        [
-            Page("genai/sign_in.py", "Sign in", "🔓"),
-            Page("genai/sign_up.py", "Sign Up", "🙋🏽‍♀️"),
-            Page("genai/payment.py", "Payment", "💰"),
-            Page("genai/create.py", "Create", "🎨"),
-            
-        ]
-    )
+if os.getenv("APP_URI") == 'http://localhost:8501':
+    show_pages(
+            [
+                Page("sign_in.py", "Sign in", "🔓"),
+                Page("sign_up.py", "Sign Up", "🙋🏽‍♀️"),
+                Page("payment.py", "Payment", "💰"),
+                Page("create.py", "Create", "🎨"),
+                
+            ]
+        )
+else: 
+        show_pages(
+            [
+                Page("genai/sign_in.py", "Sign in", "🔓"),
+                Page("genai/sign_up.py", "Sign Up", "🙋🏽‍♀️"),
+                Page("genai/payment.py", "Payment", "💰"),
+                Page("genai/create.py", "Create", "🎨"),
+                
+            ]
+        )
 hide_pages(["Payment", "Sign Up"])
 
 # Initialize the Cognito client
@@ -54,7 +68,8 @@ if submit_button:
         # Extract the access token and refresh token from the response
         access_token = response['AuthenticationResult']['AccessToken']
         refresh_token = response['AuthenticationResult']['RefreshToken']
-        st.session_state['token'] = access_token
+        st.session_state['cognito_token'] = access_token
+        st.session_state['email'] = email
     except client.exceptions.NotAuthorizedException:
         st.error("Incorrect user or password. Do you need to sign up?")
     except Exception as e:

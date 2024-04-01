@@ -5,7 +5,7 @@ import hmac
 import base64
 from st_pages import hide_pages
 
-st.set_page_config(page_title="Pixar Star", page_icon="⭐", layout="centered", initial_sidebar_state="collapsed")
+st.set_page_config(page_title="Pixar Star", page_icon="🎬", layout="centered", initial_sidebar_state="collapsed")
 hide_pages(["Payment", "Create"])
 
 # Initialize the Cognito client
